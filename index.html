@@ -1,0 +1,59 @@
+<!Doctype HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Nunito:wght@300;500&family=Open+Sans:ital,wght@1,300&family=PT+Sans&family=Roboto+Mono:wght@300&family=Rubik&display=swap" rel="stylesheet"> 
+        <title>Codeforces Profile Portal</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <link rel="icon" type="image/x-icon" href="resources/codeforces.ico"/>
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    </head>
+    <body>   
+            <div class="containermain">
+                <div class="container2">
+                    <div style="width:35%; height:100%;" align="center">
+                        <img src="resources/cf.webp" class="lol">
+                    </div> 
+                    <div style="width: 100%; height:100%; overflow: hidden;">
+                        <h1 class="frontpage1">Codeforces Profile Portal</h1>
+                        <center>
+                        <input id="username" type="user search" placeholder="Enter User Handle" name="search"> 
+                        <i onclick="basic()" style="height:3rem; width: 3rem;color:white" class="fa-solid fa-search"></i>
+                        </center>
+                    </div>
+                    <br><br>
+                </div>
+                <div class="container2">
+                    <div id="img"></div>
+                    </div> 
+                    <div style="width: 100%; height:100%; overflow: hidden;">
+                        <p id="name" class="data" style="text-align: center;font-family: 'Open Sans', sans-serif;color: white;"></p>
+                        <p id="place" class="data" style="text-align: center;font-family: 'Open Sans', sans-serif;color: white;"></p>
+                        <p id="handle" class="data" style="text-align: center;font-family: 'Open Sans', sans-serif;color: white;"></p>
+                        <p id="rating" class="data" style="text-align: center;font-family: 'Open Sans', sans-serif;color: white;"></p>
+                        
+                    </div>
+                
+                <div class="container2">
+                    <div style="width:40%; height:100%;" align="center">
+                        <table id="onlinefriends" class="data" style="border: 1px solid white;"></table>
+                        <table id="allfriends" class="data" style="border: 1px solid white;"></table>
+                    </div> 
+                    <div style="width: 100%; height:100%">
+                        <center>
+                        <table id="blogs" class="data" style="border: 1px solid white; color: white;"></table>
+                        <table id="ranks" class="data" style="border: 1px solid white; color: white;"></table>
+                        <div id="graph"></div>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+    </body>
+    <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+    <script src="script.js"></script> 
+</html>
