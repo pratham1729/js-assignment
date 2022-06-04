@@ -1,9 +1,3 @@
-var requirejs = require('requirejs');
-
-requirejs.config({
-    nodeRequire: require
-});
-
 function dataretreive(xyz){
     fetch("https://codeforces.com/api/user.info?handles="+xyz)
     .then(function (response) {
