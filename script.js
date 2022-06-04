@@ -1,10 +1,15 @@
+var requirejs = require('requirejs');
+
+requirejs.config({
+    nodeRequire: require
+});
+
 function dataretreive(xyz){
     fetch("https://codeforces.com/api/user.info?handles="+xyz)
     .then(function (response) {
         return response.json();
     })
     .then(function (data){
-        console.log(data)
         if(data.status=="OK"){
             document.getElementById("img").innerHTML= `<img src="${data.result[0].avatar}">`;
             document.getElementById("name").innerText= "Name: "+data.result[0].firstName+" "+data.result[0].lastName;
@@ -40,47 +45,60 @@ var binarray=[];for(var i=0;i<H.length;i++){binarray.push(H[i].highOrder);binarr
 return binb2hex(binarray);}
 
 
-function friends(){
-
+async function friends(){
     var on=[];
     var all=[];
+    let ff=`<tr><th style="color:white">FRIENDS</th></tr>`;
     var apikey="";//Your API Key
     var secretkey="";//Your Secret Key
     var onlineurl="https://codeforces.com/api/user.friends?onlyOnline=true&apiKey=";
     var allurl="https://codeforces.com/api/user.friends?onlyOnline=false&apiKey=";
     var time= Math.floor(Date.now()/1000);
-    console.log(time);;
     var onlinetohash=`654321/user.friends?apiKey=${apikey}&onlyOnline=true&time=${time}#${secretkey}`;
     var alltohash=`654321/user.friends?apiKey=${apikey}&onlyOnline=false&time=${time}#${secretkey}`;
     var hashedonline=SHA512(onlinetohash);
     var hashedall=SHA512(alltohash);
-    fetch(allurl + apikey + "&time=" + time + "&apiSig=654321" + hashedall)
+    await fetch(allurl + apikey + "&time=" + time + "&apiSig=654321" + hashedall)
     .then(function (response) {
         return response.json();
     })
     .then(function (data){
-        console.log(data.result);
-        off=`<tr><th style="color:white">ALL FRIENDS</th></tr>`;
         for(i=0;i<data.result.length;i++){
-            off=off + `<tr><td  style="color:white;">${data.result[i]}</td></tr>`;
-            
+            all.push(data.result[i]);
         }
-        document.getElementById("allfriends").innerHTML=off;
+;
     });
 
-    fetch(onlineurl + apikey + "&time=" + time + "&apiSig=654321" + hashedonline)
+    await fetch(onlineurl + apikey + "&time=" + time + "&apiSig=654321" + hashedonline)
     .then(function (response) {
         return response.json();
     })
     .then(function (data){
-        console.log(data);
         onf="";
         data.result.forEach((val,/*i,arr*/)=>{
-            onf=onf + `<tr><td  style="color:white;">${val}`+`🟢</td></tr>`;
-            on.push();
+            on.push(val)
         })
-        document.getElementById("onlinefriends").innerHTML=onf;
     });
+    for(i=0;i<all.length;i++){
+        val=all[i];
+        let x=false
+        for(j=0;j<on.length;j++){
+            val1=on[j];
+            if(val===val1){
+                x=true;
+                break;
+            }else{
+                continue;
+            }
+        }
+        if(x){
+            ff=ff+`<tr><td>${val}🟢</td></tr>`
+        }else{
+            ff=ff+`<tr><td>${val}</td></tr>` 
+        }
+    }
+
+    document.getElementById("onlinefriends").innerHTML=ff;
 }
 friends();
 
@@ -105,7 +123,6 @@ function blog(xyz){
         if (data.result.length<3){
             for(i=0;i<data.result.length;i++){
                 await blogComment(data.result[i].id).then(function(value){
-                    console.log(value)
                     x=value
                     })
                 str1=str1+`<tr><td><p>${i+1}.${data.result[i].title}</p><p><b>Last Comment:</b>${x}</p></td></tr>`;
@@ -115,7 +132,6 @@ function blog(xyz){
         else{
             for(i=0;i<3;i++){
                 await blogComment(data.result[i].id).then(function(value){
-                    console.log(value)
                     x=value
                     })
                     str1=str1+`<tr><td><p>${i+1}.${data.result[i].title}</p><p><b>Last Comment:</b>${x}</p></td></tr>`;
