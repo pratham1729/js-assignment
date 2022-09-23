@@ -5,6 +5,7 @@ function dataretreive(xyz){
     })
     .then(function (data){
         if(data.status=="OK"){
+            console.log(data.result[0].avatar)
             document.getElementById("img").innerHTML= `<img src="${data.result[0].avatar}">`;
             document.getElementById("name").innerText= "Name: "+data.result[0].firstName+" "+data.result[0].lastName;
             document.getElementById("place").innerText= "Place: "+data.result[0].city+","+data.result[0].country;
@@ -86,7 +87,7 @@ async function friends(){
             }
         }
         if(x){
-            ff=ff+`<tr><td>${val}🟢</td></tr>`
+            ff=ff+`<tr><td>${val}<span>&#9898;</span></td></tr>`
         }else{
             ff=ff+`<tr><td>${val}</td></tr>` 
         }
