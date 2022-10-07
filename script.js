@@ -6,7 +6,7 @@ function dataretreive(xyz){
     .then(function (data){
         if(data.status=="OK"){
             console.log(data.result[0].avatar)
-            document.getElementById("img").innerHTML= `<img src="${data.result[0].avatar}">`;
+            document.getElementById("img").innerHTML= `<img src="https:${data.result[0].avatar}">`;
             document.getElementById("name").innerText= "Name: "+data.result[0].firstName+" "+data.result[0].lastName;
             document.getElementById("place").innerText= "Place: "+data.result[0].city+","+data.result[0].country;
             document.getElementById("handle").innerText= "Handle: "+data.result[0].handle;
