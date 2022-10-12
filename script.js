@@ -5,8 +5,8 @@ function dataretreive(xyz){
     })
     .then(function (data){
         if(data.status=="OK"){
-            console.log(data.result[0].avatar)
-            document.getElementById("img").innerHTML= `<img src="https:${data.result[0].avatar}">`;
+            console.log(data)
+            document.getElementById("img").innerHTML= `<img src="${data.result[0].avatar}">`;
             document.getElementById("name").innerText= "Name: "+data.result[0].firstName+" "+data.result[0].lastName;
             document.getElementById("place").innerText= "Place: "+data.result[0].city+","+data.result[0].country;
             document.getElementById("handle").innerText= "Handle: "+data.result[0].handle;
@@ -60,8 +60,7 @@ async function friends(){
     .then(function (data){
         for(i=0;i<data.result.length;i++){
             all.push(data.result[i]);
-        }
-;
+        };
     });
 
     await fetch(onlineurl + apikey + "&time=" + time + "&apiSig=654321" + hashedonline)
@@ -74,6 +73,7 @@ async function friends(){
             on.push(val)
         })
     });
+
     for(i=0;i<all.length;i++){
         val=all[i];
         let x=false
@@ -103,7 +103,7 @@ function sleep(ms) {
 async function blogComment(id) {
     await sleep(2000);
     const response = await fetch('https://codeforces.com/api/blogEntry.comments?blogEntryId=' + id);
-    const data = await response.json()
+    const data =await response.json()
     const x=await data.result[0].text
     return x
 }
@@ -147,7 +147,6 @@ function rankings(xyz){
         if(data.result.length>5){
             for(i=0;i<5;i++){
                 str2=str2+`<tr><td>${i+1}.${data.result[i].contestName}.      ${data.result[i].rank}</td></tr>`
-
             }
         }
         else{
@@ -155,8 +154,7 @@ function rankings(xyz){
                 str2=str2+`<tr><td>${i+1}.${data.result[i].contestName}.      ${data.result[i].rank}</td></tr>`
             }
         }
-        document.getElementById("ranks").innerHTML=str2;   
-        
+        document.getElementById("ranks").innerHTML=str2;
     });    
 }
 
