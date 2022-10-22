@@ -187,6 +187,40 @@ function graph(xyz) {
         }
     }
     
+    var pointBackgroundColors = [];
+
+    for (i = 0; i < yValues.length; i++) {
+        if (yValues[i] < 1200) {
+            pointBackgroundColors.push("#cccccc");
+        } else if (yValues[i] < 1400) {
+            pointBackgroundColors.push("#77ff77");
+        }
+        else if (yValues[i] < 1600) {
+            pointBackgroundColors.push("#77ddbb");
+        }
+        else if (yValues[i] < 1900) {
+            pointBackgroundColors.push("#aaaaff");
+        }
+        else if (yValues[i] < 2100) {
+            pointBackgroundColors.push("#ff88ff");
+        }
+        else if (yValues[i] < 2300) {
+            pointBackgroundColors.push("#ffcc88");
+        }
+        else if (yValues[i] < 2400) {
+            pointBackgroundColors.push("#ffbb55");
+        }
+        else if (yValues[i] < 2600) {
+            pointBackgroundColors.push("#ff7777");
+        }
+        else if (yValues[i] < 3000) {
+            pointBackgroundColors.push("#ff3333");
+        }
+        else {
+            pointBackgroundColors.push("#aa0000");
+        }
+    }
+
     new Chart("graph_1", {
         type: "line",
         data: {
@@ -194,8 +228,7 @@ function graph(xyz) {
             datasets: [{
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
+                backgroundColor: pointBackgroundColors,
                 data: yValues
             }]
         },
@@ -207,8 +240,10 @@ function graph(xyz) {
         }
     });
     
-})
+        }
+    )
 }
+
 
 
 function basic(){
