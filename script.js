@@ -168,23 +168,12 @@ function graph(xyz) {
     .then(function (data){
     
     let p = data.result.length
-    if(p>=5){
-        for (let i = p-1; i >=0; i--) {
+    for (let i = p-1; i >=0; i--) {
             const ct1 = data.result[i]
             let name = ct1.contestName
             let rating = ct1.newRating
             xValues.unshift(name)
             yValues.unshift(rating)
-        }
-    }
-    else{
-        for (let i = p-1; i >=0; i--) {
-            const ct1 = data.result[i]
-            let name = ct1.contestName
-            let rating = ct1.newRating
-            xValues.unshift(name)
-            yValues.unshift(rating)
-        }
     }
     
     var pointBackgroundColors = [];
